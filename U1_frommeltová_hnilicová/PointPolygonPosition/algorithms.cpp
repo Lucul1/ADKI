@@ -89,9 +89,12 @@ int Algorithms::getPositionWinding(QPointF &q, std::vector<QPointF> &pol)
             double xq = q.x();
             double xpi = pol[i].x();
             double xpii = pol[(i+1)%n].x();
+            double yq = q.y();
+            double ypi = pol[i].y();
+            double ypii = pol[(i+1)%n].y();
 
             //Checking if point is between two points of polygon line
-            if ((xq >= xpi && xq <= xpii) || (xq <= xpi && xq >= xpii))
+            if (((xq >= xpi && xq <= xpii) || (xq <= xpi && xq >= xpii)) && ((yq >= ypi && yq <= ypii) || (yq <= ypi && yq >= ypii)))
             {
                 return -1;
             }
