@@ -50,7 +50,7 @@ std::vector<QPoint> Generatorforpoint::generatorGrid(int &n, int &w, int &h)
        }
 
        p.setX(10);
-       p.setY((p.y()) + (h /n));
+       p.setY((p.y()) + (h/n));
      }
 
    return points_random;
@@ -139,8 +139,8 @@ std::vector<QPoint> Generatorforpoint::generatorSquare(int &n, int &w, int &h)
             // pokud jsme na okraji, vypočteme souřadnice a vložíme bod do vektoru bodů k vykreslení
             if(i==0 || i==n-1 || j==0 || j==n-1 )
             {
-                p.setX(startingX + i * stepSize);
-                p.setY(startingY + j * stepSize);
+                p.setX(startingX + i * stepSize + (h/n));
+                p.setY(startingY + j * stepSize + (h/n));
                 points_random.push_back(p);
             }
         }
@@ -176,8 +176,8 @@ std::vector<QPoint> Generatorforpoint::generatorRectangle(int &n, int &w, int &h
             // pokud jsme na okraji, vypočteme souřadnice a vložíme bod do vektoru bodů k vykreslení
             if(i==0 || i==n-1 || j==0 || j==m-1 )
             {
-                p.setX(startingX + i * stepSize);
-                p.setY(startingY + j * stepSize);
+                p.setX(startingX + i * stepSize + (h/n));
+                p.setY(startingY + j * stepSize + (h/n));
                 points_random.push_back(p);
             }
         }
