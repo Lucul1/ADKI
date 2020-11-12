@@ -3,13 +3,7 @@
 
 #include <QWidget>
 #include <vector>
-
-struct QPointO
-{
-    QPoint p;
-    double omega;
-    double length;
-};
+#include <QtGui>
 
 class Algorithms
 {

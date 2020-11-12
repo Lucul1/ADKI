@@ -4,6 +4,9 @@
 #include "sortbyy.h"
 #include "sortbyx.h"
 #include "sortbyangle.h"
+#include "removebyangle.h"
+#include <deque>
+#include <stack>
 
 Algorithms::Algorithms()
 {
@@ -306,95 +309,54 @@ QPolygon Algorithms::sweepLine(std::vector<QPoint> &points)
 
 QPolygon Algorithms::graham(std::vector<QPoint> &points)
 {
-    //Convex hull
-    QPolygon ch;
+        std::deque<QPoint> ch2;
 
-    //Sort points by Y
-    std::sort(points.begin(), points.end(), sortByY());
+        // Find pivot q
+        QPoint q = *min_element(points.begin(),points.end(), sortByY());
 
-    //Finding pivot q
-    QPoint q = points[0];
+        // Sort points by their direction
+        std::sort(points.begin(),points.end(), sortByAngle(q));
 
-    //Add pivot to convex hull
-    ch.push_back(q);
+        // Remove duplicate points
+        auto it = std::unique(points.begin(),points.end(), removeByAngle(q));
 
-    //Get point r needed for calculating angles
-    QPoint r(q.x()+1,q.y());
+        //Trim vector
+        points.resize(it-points.begin());
 
-    //Points sorted by omega
-    std::vector<QPointO> pointso;
-    QPointO pointq;
-    pointq.p.setX(points[0].x());
-    pointq.p.setY(points[0].y());
-    pointq.omega = 0;
-    pointq.length = 0;
-    pointso.push_back(pointq);
+        ch2.push_back(q);
+        ch2.push_back(points[0]);
 
-    int n = points.size();
+        int j = 2;
+        int n = points.size();
 
-    //Auxiliary vector for points with same omega
-    std::vector<int> index_vec;
+        while (j < n)
+        {
+            // Get point on the top
+            QPoint p1 = ch2.front();
 
+            ch2.pop_front();
 
-    //Sort by omega
-    for (int i = 1; i < n; i++)
-    {
-      double omega = getAngle(q, r, q, points[i]);
-      double dist = getPointToPointDistance(q, points[i]);
-      QPointO point;
-      point.p.setX(points[i].x());
-      point.p.setY(points[i].y());
-      point.omega = omega;
-      point.length = dist;
-      pointso.push_back(point);
-    }
+            QPoint p2 = ch2.front();
 
-    std::sort(pointso.begin(), pointso.end(), sortByAngle());
-    points.clear();
-    points.push_back(q);
-    std::vector<int> ipot;
+            if(getPointLinePosition(points[j],p2,p1)==1)
+            {
+                // Push point back to stack
+                ch2.push_front(p1);
+                ch2.push_front(points[j]);
+                j ++;
+            }
+        }
 
-    //Remove points with same omega
-    for (int i = 1; i < pointso.size(); i++)
-    {
-      if (fabs(pointso[i].omega - pointso[(i+1)%n].omega) < 10e-6)
-      {
-        ipot.push_back(i);
-      }
-      else if (!((fabs(pointso[i].omega - pointso[(i+1)%n].omega) < 10e-6)) && (ipot.empty()))
-      {
-        QPoint point;
-        point.setX(pointso[i].p.x());
-        point.setY(pointso[i].p.y());
-        points.push_back(point);
-      }
-      else
-      {
-        QPoint point;
-        point.setX(pointso[ipot.back()+1].p.x());
-        point.setY(pointso[ipot.back()+1].p.y());
-        points.push_back(point);
-        ipot.clear();
-      }
-     }
+        QPolygon ch;
+        ch.push_back(q);
+        ch.push_back(points[0]);
 
-    //Add point with minimum angle to convex hull
-    ch.push_back(points[1]);
-    int j = 2;
-
-    //Process all points
-    while (j < points.size())
-    {
-      //Check if the new point is in the left half plane
-      if (getPointLinePosition(points[j], ch[ch.size() - 2], ch.back()) == 1)
-      {
-        ch.push_back(points[j]);
-        j += 1;
-      }
-      else
-        ch.removeLast();
-    }
-
+        for(int i=2; i < ch2.size(); i++)
+        {
+            QPoint a = ch2[i];
+            ch.push_back(a);
+        }
+        //ch2->ch;
         return ch;
 }
 

@@ -13,6 +13,7 @@ SOURCES += \
     draw.cpp \
     generatorforpoint.cpp \
     main.cpp \
+    removebyangle.cpp \
     sortbyangle.cpp \
     sortbyx.cpp \
     sortbyy.cpp \
@@ -22,6 +23,7 @@ HEADERS += \
     algorithms.h \
     draw.h \
     generatorforpoint.h \
+    removebyangle.h \
     sortbyangle.h \
     sortbyx.h \
     sortbyy.h \

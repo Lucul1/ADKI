@@ -2,35 +2,29 @@
 #define SORTBYANGLE_H
 #include <cmath>
 #include "algorithms.h"
+#include <QtGui>
+
 
 class sortByAngle
 {
+private:
+    QPoint q;
+
 public:
-    sortByAngle();
+    sortByAngle(QPoint &p){q = p;}
 
-    bool operator()(QPointO &t, QPointO &t1)
+    bool operator()(QPoint &p1, QPoint &p2)
     {
-        if(fabs(t.omega-t1.omega) < 10e-6)
-        {
-            if(t.length < t1.length)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
+       //Compute directions sigma1, sigma2
+        double sigma1 = atan2(p1.y()-q.y(),p1.x()-q.x());
+        double sigma2 = atan2(p2.y()-q.y(),p2.x()-q.x());
 
-        else if(t.omega < t1.omega)
-        {
-            return 1;
-        }
+       //Compute distance d1,d2
+        double d1 = (p1.x()-q.x())*(p1.x()-q.x())+(p1.y()-q.y())*(p1.y()-q.y());
+        double d2 = (p2.x()-q.x())*(p2.x()-q.x())+(p2.y()-q.y())*(p2.y()-q.y());
 
-        else
-        {
-            return 0;
-        }
+       //Comparator
+        return sigma1 < sigma2 || (sigma1 == sigma2) && (d1 > d2);
     }
 };
 
