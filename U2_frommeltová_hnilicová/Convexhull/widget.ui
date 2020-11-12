@@ -93,6 +93,11 @@
          <string>Square</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Rectangle</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>

@@ -90,8 +90,8 @@ void Widget::on_generate_clicked()
     std::vector<QPoint> points;
 
     //Set width and height as width and height canvas
-    int width = ui->canvas->width();
-    int height = ui->canvas->height();
+    int width = (ui->canvas->width());
+    int height = (ui->canvas->height());
 
     //Number of points from editLine
     int n = ui->pointsnumber->text().toInt();
@@ -107,6 +107,8 @@ void Widget::on_generate_clicked()
        points = Generatorforpoint::generatorEllipse(n,width,height);
     else if (ui->comboBoxDraw->currentIndex()== 4)
        points = Generatorforpoint::generatorSquare(n,width,height);
+    else if (ui->comboBoxDraw->currentIndex()== 5)
+       points = Generatorforpoint::generatorRectangle(n,width,height);
 
     //Add points to canvasu
     ui->canvas->setPoints(points);

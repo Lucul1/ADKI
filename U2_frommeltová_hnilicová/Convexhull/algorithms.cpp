@@ -234,7 +234,6 @@ QPolygon Algorithms::sweepLine(std::vector<QPoint> &points)
             pointsWithoutDuplicit.push_back(points[i]);
         }
     }
-    pointsWithoutDuplicit.push_back(points[points.size() - 1]);
 
     points = pointsWithoutDuplicit;
 
@@ -323,8 +322,8 @@ QPolygon Algorithms::graham(std::vector<QPoint> &points)
         //Trim vector
         points.resize(it-points.begin());
 
-        ch2.push_back(q);
-        ch2.push_back(points[0]);
+        ch2.push_front(q);
+        ch2.push_front(points[1]);
 
         int j = 2;
         int n = points.size();
@@ -348,15 +347,12 @@ QPolygon Algorithms::graham(std::vector<QPoint> &points)
         }
 
         QPolygon ch;
-        ch.push_back(q);
-        ch.push_back(points[0]);
 
-        for(int i=2; i < ch2.size(); i++)
+        for(int i=0; i < ch2.size(); i++)
         {
             QPoint a = ch2[i];
             ch.push_back(a);
         }
-        //ch2->ch;
         return ch;
 }
 
