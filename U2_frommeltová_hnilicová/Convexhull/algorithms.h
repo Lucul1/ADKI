@@ -18,8 +18,7 @@ public:
     static void qh(int s, int e, QPolygon &points, QPolygon &ch);
     static QPolygon sweepLine(std::vector<QPoint> &points);
     static QPolygon graham(std::vector<QPoint> &points);
-    static double getPointToPointDistance(QPoint &p1, QPoint &p2);
-    static QPolygon strictlyConvexHull(QPolygon &ch);
+    static QPolygon strictCHull(QPolygon &ch);
 
 };
 

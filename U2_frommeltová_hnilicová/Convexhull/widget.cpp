@@ -42,10 +42,10 @@ void Widget::on_create_clicked()
     clock_t time = end_time-start_time;
     ui->time->setText(QString::number(time));
 
-    //Draw
+    //Strictly Convex Hull
     if (ui->checkBox->isChecked())
     {
-        QPolygon strict_ch = Algorithms::strictlyConvexHull(ch);
+        QPolygon strict_ch = Algorithms::strictCHull(ch);
         ui->canvas->setCH(strict_ch);
         repaint();
     }
@@ -55,7 +55,7 @@ void Widget::on_create_clicked()
     //Set convex hull
     ui->canvas->setCH(ch);
 
-    //Repaint - 43. překreslení
+    //Repaint
     repaint();
     }
 }

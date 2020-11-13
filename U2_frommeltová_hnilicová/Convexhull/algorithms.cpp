@@ -66,16 +66,6 @@ double Algorithms::getPointLineDist(QPoint &a,QPoint &p1,QPoint &p2)
     return fabs(numerator)/sqrt(dx*dx + dy*dy);
 }
 
-double Algorithms::getPointToPointDistance(QPoint &p1, QPoint &p2)
-{
-    //Calculate distance between two points
-    double dx = p2.x() - p1.x();
-    double dy = p2.y() - p1.y();
-    double dist = sqrt(dx * dx + dy * dy);
-
-    return dist;
-}
-
 
 QPolygon Algorithms::jarvis(std::vector<QPoint> &points)
 {
@@ -356,9 +346,8 @@ QPolygon Algorithms::graham(std::vector<QPoint> &points)
         return ch;
 }
 
-QPolygon Algorithms::strictlyConvexHull(QPolygon &ch)
-{
-    //Strictly Convex Hull
+QPolygon Algorithms::strictCHull(QPolygon &ch)
+{ 
     QPolygon strict_ch;
 
     //Check if the first and the last points are the same in convex hull
