@@ -136,7 +136,7 @@ std::vector<QPoint> Generatorforpoint::generatorSquare(int &n, int &w, int &h)
     {
         for (int j = 0; j < n; j++)
         {
-            // pokud jsme na okraji, vypočteme souřadnice a vložíme bod do vektoru bodů k vykreslení
+            //Condition for boundary points in the plot
             if(i==0 || i==n-1 || j==0 || j==n-1 )
             {
                 p.setX(startingX + i * stepSize + (h/n));
@@ -173,7 +173,7 @@ std::vector<QPoint> Generatorforpoint::generatorRectangle(int &n, int &w, int &h
     {
         for (int j = 0; j < m; j++)
         {
-            // pokud jsme na okraji, vypočteme souřadnice a vložíme bod do vektoru bodů k vykreslení
+            //Condition for boundary points in the plot
             if(i==0 || i==n-1 || j==0 || j==m-1 )
             {
                 p.setX(startingX + i * stepSize + (h/n));
