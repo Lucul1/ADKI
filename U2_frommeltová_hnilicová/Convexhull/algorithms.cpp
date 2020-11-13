@@ -336,6 +336,7 @@ QPolygon Algorithms::graham(std::vector<QPoint> &points)
             }
         }
 
+	//Convert points from queue to polygon, point by point
         QPolygon ch;
 
         for(int i=0; i < ch2.size(); i++)
