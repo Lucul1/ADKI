@@ -48,3 +48,31 @@ void Widget::on_Clear_clicked()
     //Repaint screen
     repaint();
 }
+
+void Widget::on_Delaunay_clicked()
+{
+    //Create DT
+
+    //Get points
+    std::vector<QPoint3D> &points = ui->Canvas->getPoints();
+
+    //Create DT
+    Algorithms a;
+    std::vector<Edge> dt=a.DT(points);
+
+    //Set DT
+    ui->Canvas->setDT(dt);
+
+    //Repaint
+    repaint();
+}
+
+
+void Widget::on_Clear_DT_clicked()
+{
+    std::vector<Edge> &dt = ui->Canvas->getDT();
+
+    dt.clear();
+
+    repaint();
+}

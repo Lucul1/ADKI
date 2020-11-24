@@ -23,6 +23,10 @@ private slots:
 
     void on_Clear_clicked();
 
+    void on_Delaunay_clicked();
+
+    void on_Clear_DT_clicked();
+
 private:
     Ui::Widget *ui;
 };
