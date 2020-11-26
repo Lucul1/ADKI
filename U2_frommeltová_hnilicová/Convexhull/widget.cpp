@@ -46,7 +46,17 @@ void Widget::on_create_clicked()
     if (ui->checkBox->isChecked())
     {
         QPolygon strict_ch = Algorithms::strictCHull(ch);
+        std::vector<QPoint> strictpoints;
+
+        // Points in strict Convex Hull
+        for (int i = 0; i < strict_ch.size(); i++)
+        {
+            QPoint a = strict_ch[i];
+            strictpoints.push_back(a);
+        }
+
         ui->canvas->setCH(strict_ch);
+        ui->canvas->setstrictPoints(strictpoints);
         repaint();
     }
     else
@@ -76,9 +86,11 @@ void Widget::on_clearAll_clicked()
 {
     //Get points
     std::vector<QPoint> &points = ui ->canvas->getPoint();
+    std::vector<QPoint> &strickpoints = ui ->canvas->getstrictPoint();
 
     //Clear points
     points.clear();
+    strickpoints.clear();
 
     //Repaint screen
     repaint();

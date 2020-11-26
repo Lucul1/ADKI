@@ -33,6 +33,14 @@ void Draw::paintEvent(QPaintEvent *e)
         qp.drawEllipse(points[i].x()-r,points[i].y()-r,2*r,2*r);
     }
 
+    //Draw points in the Convex Hull
+    int r2 = 5;
+    for (int i = 0; i < strickpoints.size();i++)
+    {
+        qp.setPen(Qt::red);
+        qp.drawEllipse(strickpoints[i].x()-r2,strickpoints[i].y()-r2,2*r2,2*r2);
+    }
+
     //Draw polygons
     qp.setPen(Qt::cyan);
     qp.drawPolygon(ch);

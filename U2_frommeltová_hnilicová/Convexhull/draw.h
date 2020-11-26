@@ -10,6 +10,7 @@ class Draw : public QWidget
 
 private:
     std::vector<QPoint> points;
+    std::vector<QPoint> strickpoints;
     QPolygon ch;
 
 public:
@@ -20,7 +21,8 @@ public:
     void setCH(QPolygon & ch_){ch=ch_;};
     QPolygon & getCH(){return ch;};
     void setPoints(std::vector<QPoint> &pts) {points = pts;}
-
+    void setstrictPoints(std::vector<QPoint> &pts) {strickpoints = pts;}
+    std::vector<QPoint> & getstrictPoint(){return strickpoints;}
 
 
 signals:

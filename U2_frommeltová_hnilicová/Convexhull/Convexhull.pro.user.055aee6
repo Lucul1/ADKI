@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.10.0, 2020-11-26T13:01:38. -->
+<!-- Written by QtCreator 4.10.0, 2020-11-13T11:09:58. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{02aa0b14-537c-4649-a104-7678e0706d1b}</value>
+  <value type="QByteArray">{055aee62-126f-4a6d-95d8-646a35429140}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -71,7 +71,7 @@
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">H:/ADK/U2/oprava/U2_frommeltová_hnilicová/build-Convexhull-Desktop_Qt_5_13_1_MinGW_32_bit-Ladu011bnu00ed</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">H:/ADK/U2/U2_frommeltová_hnilicová/build-Convexhull-Desktop_Qt_5_13_1_MinGW_32_bit-Ladu011bnu00ed</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -127,7 +127,7 @@
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">H:/ADK/U2/oprava/U2_frommeltová_hnilicová/build-Convexhull-Desktop_Qt_5_13_1_MinGW_32_bit-Vydu00e1nu00ed</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">H:/ADK/U2/U2_frommeltová_hnilicová/build-Convexhull-Desktop_Qt_5_13_1_MinGW_32_bit-Vydu00e1nu00ed</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -183,7 +183,7 @@
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">H:/ADK/U2/oprava/U2_frommeltová_hnilicová/build-Convexhull-Desktop_Qt_5_13_1_MinGW_32_bit-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">H:/ADK/U2/U2_frommeltová_hnilicová/build-Convexhull-Desktop_Qt_5_13_1_MinGW_32_bit-Profile</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -307,7 +307,7 @@
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Convexhull</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:H:/ADK/U2/oprava/U2_frommeltová_hnilicová/Convexhull/Convexhull.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:H:/ADK/U2/U2_frommeltová_hnilicová/Convexhull/Convexhull.pro</value>
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
@@ -317,7 +317,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">H:/ADK/U2/oprava/U2_frommeltová_hnilicová/build-Convexhull-Desktop_Qt_5_13_1_MinGW_32_bit-Ladu011bnu00ed</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">H:/ADK/U2/U2_frommeltová_hnilicová/build-Convexhull-Desktop_Qt_5_13_1_MinGW_32_bit-Ladu011bnu00ed</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
