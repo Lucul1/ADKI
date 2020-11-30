@@ -23,11 +23,12 @@ void Widget::on_openFile_clicked()
     QString path = QFileDialog::getOpenFileName(
                 this,
                 tr("Select file"),
-                "../",
-                "Text file (*.txt);");
+                "/",
+                "Text file (*.txt);;All files (*.*)");
 
     std::string path_utf8 = path.toUtf8().constData();
     ui->Canvas->loadPolygons(path_utf8);
+    ui->Canvas->repaint();
 }
 
 void Widget::on_Analyze_clicked()
