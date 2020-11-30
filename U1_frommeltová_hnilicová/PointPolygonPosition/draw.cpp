@@ -14,36 +14,42 @@ Draw::Draw(QWidget *parent) : QWidget(parent)
 
 void Draw::loadPolygons(std::string &path)
 {
-    int n;
-    double x;
-    double y;
-    QPolygonF polygon;
+       polygons.clear();
+       result.clear();
+       repaint();
+       int id;
+       double x;
+       double y;
+       QPolygonF polygon;
 
-    std::ifstream myfile(path);
-    if(myfile.is_open())
-    {
-        while(myfile >> n >> x >> y)
-        {
-            if(n == 1)
-            {
-               if(polygon.empty() == FALSE)
+       //Load data from .txt file
+       std::ifstream data(path);
+
+       if(data.is_open())
+       {
+           //Fill the vectors
+           while(data >> id >> x >> y)
+           {
+               //New polygon
+               if (id == 1)
                {
-                   polygons.push_back(polygon);
+                   if (polygon.isEmpty() == FALSE)
+                   {
+                       polygons.push_back(polygon);
+                   }
+                   polygon.clear();
+                   polygon << QPointF(x, y);
                }
-               polygon.clear();
-               polygon << QPointF(x, y);
-            }
-            else
-            {
-                polygon << QPointF(x, y);
-            }
-        }
+               else
+                   polygon << QPointF(x, y);
+           }
 
-        polygons.push_back(polygon);
-        polygon.clear();
+           //Add last polygon into vector
+           polygons.push_back(polygon);
 
-        myfile.close();
-    }
+           data.close();
+       }
+       repaint();
 }
 
 void Draw::paintEvent(QPaintEvent *e)

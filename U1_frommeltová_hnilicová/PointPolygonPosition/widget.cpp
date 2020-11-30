@@ -20,15 +20,9 @@ Widget::~Widget()
 
 void Widget::on_openFile_clicked()
 {
-    QString path = QFileDialog::getOpenFileName(
-                this,
-                tr("Select file"),
-                "/",
-                "Text file (*.txt);;All files (*.*)");
-
-    std::string path_utf8 = path.toUtf8().constData();
-    ui->Canvas->loadPolygons(path_utf8);
-    ui->Canvas->repaint();
+    QString path(QFileDialog::getOpenFileName(this, tr("Open file with polygons"), "../", tr("Text Files (*.txt)")));
+    std::string path_std = path.toStdString();
+    ui->Canvas->loadPolygons(path_std);
 }
 
 void Widget::on_Analyze_clicked()
