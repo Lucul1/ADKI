@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Poin Polygon Position</string>
+   <string>Points Polygon Position</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
