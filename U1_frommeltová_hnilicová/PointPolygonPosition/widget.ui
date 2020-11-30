@@ -17,7 +17,11 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
+<<<<<<< HEAD
    <string>Point Polygon Position</string>
+=======
+   <string>PositionPointOnPolygons</string>
+>>>>>>> 11512527a6de146364583086150eae5e97984369
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
