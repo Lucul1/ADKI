@@ -86,15 +86,25 @@ int Algorithms::getPositionWinding(QPointF &q, std::vector<QPointF> &pol)
         //Point on the line
         else if (orient == -1)
         {
-            double xq = q.x();
-            double xpi = pol[i].x();
-            double xpii = pol[(i+1)%n].x();
-            double yq = q.y();
-            double ypi = pol[i].y();
-            double ypii = pol[(i+1)%n].y();
+            double tol = 10;
+
+            // Distance pi and pi+1
+            double dxi = (pol[i].x() - pol[(i+1)%n].x());
+            double dyi = (pol[i].y() - pol[(i+1)%n].y());
+            double d_pipii = sqrt(dxi*dxi + dyi*dyi);
+
+            // Distance pi and q
+            double dxq = (pol[i].x() - q.x());
+            double dyq = (pol[i].y() - q.y());
+            double d_piq = sqrt(dxq*dxq + dyq*dyq);
+
+            // Distance pi+1 and q
+            double dxqi = (pol[(i+1)%n].x() - q.x());
+            double dyqi = (pol[(i+1)%n].y() - q.y());
+            double d_piiq = sqrt(dxqi*dxqi + dyqi*dyqi);
 
             //Checking if point is between two points of polygon line
-            if (((xq >= xpi && xq <= xpii) || (xq <= xpi && xq >= xpii)) && ((yq >= ypi && yq <= ypii) || (yq <= ypi && yq >= ypii)))
+            if (fabs(d_pipii -(d_piq+d_piiq)) < tol)
             {
                 return -1;
             }
