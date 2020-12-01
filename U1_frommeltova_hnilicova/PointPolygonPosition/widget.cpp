@@ -78,5 +78,12 @@ void Widget::on_Analyze_clicked()
 
 void Widget::on_Clean_clicked()
 {
-
+    QPointF &q = ui->Canvas->getPoint();
+    q.setX(-50);
+    q.setY(-50);
+    std::vector<QPolygonF> &pol = ui->Canvas->getPolygons();
+    pol.clear();
+    std::vector<int> &result = ui->Canvas->getResult();
+    result.clear();
+    repaint();
 }
