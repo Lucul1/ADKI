@@ -246,3 +246,86 @@ void Algorithms::updateAEL(Edge &e, std::list<Edge> &ael)
     //Edge is already in list, erase
     else ael.erase(ie);
 }
+
+QPoint3D Algorithms::getContourPoint(QPoint3D &p1,QPoint3D &p2, double z)
+{
+    //Create point on contour
+    double xa = ((p2.x()-p1.x())/(p2.getZ()-p1.getZ()))*(z-p1.getZ())+p1.x();
+    double ya = ((p2.y()-p1.y())/(p2.getZ()-p1.getZ()))*(z-p1.getZ())+p1.y();
+
+    QPoint3D A(xa,ya,z);
+    return A;
+}
+
+std::vector<Edge> Algorithms::contourLines(std::vector<Edge> &dt,double z_min, double z_max, double dz)
+{
+    //Create contour lines using linear interpolation
+    std::vector<Edge> contours;
+
+    // Browse all triangles one by one
+    for(int i = 0; i < dt.size(); i += 3)
+    {
+        //Get triangle vertices
+        QPoint3D p1 = dt[i].getStart();
+        QPoint3D p2 = dt[i].getEnd();
+        QPoint3D p3 = dt[i+1].getEnd();
+
+        // Compute all contour lines for a triangle
+        for(double z = z_min ; z <= z_max; z+=dz)
+        {
+            // Get height differences
+            double dz1 = z - p1.getZ();
+            double dz2 = z - p2.getZ();
+            double dz3 = z - p3.getZ();
+
+            //Compute test criteria
+            double t12 = dz1*dz2;
+            double t23 = dz2*dz3;
+            double t31 = dz3*dz1;
+
+            //Triangle in the plane
+            if((dz1 ==0)&&(dz2 == 0)&&(dz3 == 0))
+                continue;
+
+            //Edge 1,2 of triangle in plane
+            if(dz1 == 0 && dz2 == 0)
+                contours.push_back(dt[i]);
+
+            //Edge 2,3 of triangle in plane
+            else if(dz2 == 0 && dz3 == 0)
+                contours.push_back(dt[i+1]);
+
+            //Edge 3,2 of triangle in plane
+            else if(dz3 == 0 && dz2 == 0)
+                contours.push_back(dt[i+2]);
+
+            // Edge 1,2 2,3 are intersected
+            else if((t12 <= 0 && t23 < 0) || (t12 < 0 && t23 <= 0))
+            {
+                QPoint3D A = getContourPoint(p1,p2,z);
+                QPoint3D B = getContourPoint(p2,p3,z);
+
+                contours.push_back(Edge(A,B));
+            }
+
+            // Edge 2,3 3,1 are intersected
+            else if((t23 <= 0 && t31 < 0) || (t23 < 0 && t31 <= 0))
+            {
+                QPoint3D A = getContourPoint(p2,p3,z);
+                QPoint3D B = getContourPoint(p3,p1,z);
+
+                contours.push_back(Edge(A,B));
+            }
+
+            // Edge 1,2 3,1 are intersected
+            else if((t12 <= 0 && t31 < 0) || (t12 < 0 && t31 <= 0))
+            {
+                QPoint3D A = getContourPoint(p1,p2,z);
+                QPoint3D B = getContourPoint(p3,p1,z);
+
+                contours.push_back(Edge(A,B));
+            }
+        }
+    }
+    return contours;
+}

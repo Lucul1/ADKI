@@ -19,6 +19,7 @@ void Draw::paintEvent(QPaintEvent *e)
     {
         painter.drawEllipse(points[i].x()-r,points[i].y()-r,2*r,2*r);
     }
+
     //Draw edges
     QPen p(Qt::green, 1);
     painter.setPen(p);
@@ -27,6 +28,17 @@ void Draw::paintEvent(QPaintEvent *e)
     {
         painter.drawLine(dt[i].getStart(), dt[i].getEnd());
     }
+
+    //Draw contour lines
+    //QPen q(Qt::blue, 1);
+    QPen q(QColor( 150, 75, 0 ));
+    painter.setPen(q);
+
+    for (int i = 0; i < contours.size(); i++)
+    {
+        painter.drawLine(contours[i].getStart(), contours[i].getEnd());
+    }
+
     painter.end();
 }
 

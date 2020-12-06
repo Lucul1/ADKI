@@ -15,8 +15,10 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
 
-    double z_min = 0;
-    double z_max = 1000;
+private:
+    double z_min;
+    double z_max;
+    double dz;
 
 private slots:
     void on_Import_clicked();
@@ -26,6 +28,16 @@ private slots:
     void on_Delaunay_clicked();
 
     void on_Clear_DT_clicked();
+
+    void on_Contours_clicked();
+
+    void on_lineEdit_editingFinished();
+
+    void on_lineEdit_2_editingFinished();
+
+    void on_lineEdit_3_editingFinished();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::Widget *ui;
