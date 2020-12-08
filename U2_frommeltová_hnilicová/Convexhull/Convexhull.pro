@@ -17,6 +17,8 @@ SOURCES += \
     sortbyangle.cpp \
     sortbyx.cpp \
     sortbyy.cpp \
+    sortbyyright.cpp \
+    sortbyyright.cpp \
     widget.cpp
 
 HEADERS += \
@@ -27,6 +29,8 @@ HEADERS += \
     sortbyangle.h \
     sortbyx.h \
     sortbyy.h \
+    sortbyyright.h \
+    sortbyyright.h \
     widget.h
 
 FORMS += \

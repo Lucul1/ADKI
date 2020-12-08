@@ -1,10 +1,11 @@
 #include "algorithms.h"
-#include <cmath>
-#include <vector>
 #include "sortbyy.h"
 #include "sortbyx.h"
 #include "sortbyangle.h"
 #include "removebyangle.h"
+#include "sortbyyright.h"
+#include <cmath>
+#include <vector>
 #include <deque>
 #include <stack>
 
@@ -301,20 +302,22 @@ QPolygon Algorithms::graham(std::vector<QPoint> &points)
         std::deque<QPoint> ch2;
 
         // Find pivot q
-        QPoint q = *min_element(points.begin(),points.end(), sortByY());
+        QPoint q = *min_element(points.begin(), points.end(), sortByYRight());
 
         // Sort points by their direction
         std::sort(points.begin(),points.end(), sortByAngle(q));
 
-        // Remove duplicate points
-        auto it = std::unique(points.begin(),points.end(), removeByAngle(q));
+        //Remove duplicate points
+        std::vector <QPoint> ::iterator it = std::unique(points.begin(), points.end(), removeByAngle(q));
 
         //Trim vector
         points.resize(it-points.begin());
 
+        //Add 2 points to CH
         ch2.push_front(q);
         ch2.push_front(points[1]);
 
+        //Process all points
         int j = 2;
         int n = points.size();
 
