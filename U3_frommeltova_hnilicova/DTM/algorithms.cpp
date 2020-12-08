@@ -329,3 +329,59 @@ std::vector<Edge> Algorithms::contourLines(std::vector<Edge> &dt,double z_min, d
     }
     return contours;
 }
+
+
+double Algorithms::getSlope(QPoint3D &p1, QPoint3D &p2, QPoint3D &p3)
+{
+    //Compute slope of triangle in DT
+    double ux = p2.x() - p1.x();
+    double uy = p2.y() - p1.y();
+    double uz = p2.getZ() - p1.getZ();
+
+    double vx = p3.x() - p1.x();
+    double vy = p3.y() - p1.y();
+    double vz = p3.getZ() - p1.getZ();
+
+    //Normal vector
+    double nx = uy*vz - uz*vy;
+    double ny = -(ux*vz - uz*vx);
+    double nz = ux*vy - uy*vx;
+
+    //Norm
+    double nt = sqrt(nx*nx + ny*ny + nz*nz);
+
+    return acos(nz/nt)*180/M_PI;
+}
+
+
+double Algorithms::getAspect(QPoint3D &p1, QPoint3D &p2, QPoint3D &p3)
+{
+    //Compute aspect of triangle in DT
+}
+
+
+std::vector<Triangle> Algorithms::analyzeDTM(std::vector<Edge> &dt)
+{
+    //Analyze slope and aspect of DTM
+    std::vector<Triangle> triangles;
+
+    //Process each triangle
+    for (int i = 0; i<dt.size() ;i += 3)
+    {
+        //Get vertices
+        QPoint3D p1 = dt[i].getStart();
+        QPoint3D p2 = dt[i].getEnd();
+        QPoint3D p3 = dt[i+1].getEnd();
+
+        //Compute slope and aspect
+        double slope = getSlope(p1, p2, p3);
+
+        //Create triangle
+        Triangle triangle (p1, p2, p3, slope, slope);
+
+        //Add triangle to the list
+        triangles.push_back(triangle);
+    }
+
+    return triangles;
+}
