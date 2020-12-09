@@ -20,8 +20,8 @@ public:
     void updateAEL(Edge &e, std::list<Edge> &ael);
     QPoint3D getContourPoint(QPoint3D &p1,QPoint3D &p2, double z);
     std::vector<Edge> contourLines(std::vector<Edge> &dt,double z_min, double z_max, double dz );
-    double getSlope(QPoint3D &p1, QPoint3D &p2, QPoint3D &p3);
-    double getAspect(QPoint3D &p1, QPoint3D &p2, QPoint3D &p3);
-    std::vector<Triangle> analyzeDTM(std::vector<Edge> &dt);
+    double calculateSlope(QPoint3D &p1, QPoint3D &p2, QPoint3D &p3);
+    double calculateAspect(QPoint3D &p1, QPoint3D &p2, QPoint3D &p3);
+    std::vector<Triangle> analyzeDTM(std::vector<Edge> & dt);
 };
 #endif // ALGORITHMS_H

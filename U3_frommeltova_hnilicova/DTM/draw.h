@@ -2,10 +2,9 @@
 #define DRAW_H
 
 #include <QWidget>
-#include <vector>
-
 #include "qpoint3d.h"
-#include "edge.h"
+#include "algorithms.h"
+#include <vector>
 #include "triangle.h"
 
 class Draw : public QWidget
@@ -15,7 +14,8 @@ private:
         std::vector<QPoint3D> points;
         std::vector<Edge> dt;
         std::vector<Edge> contours;
-        std::vector <Triangle> dtm;
+        std::vector<Triangle> dtm;
+        bool slope, aspect;
 
 public:
     explicit Draw(QWidget *parent = nullptr);
@@ -28,8 +28,11 @@ public:
     std::vector<Edge>  & getDT(){return dt;}
     void setContours(std::vector<Edge> &contours_){contours = contours_;}
     std::vector<Edge> & getContours(){return contours;}
-    void setDTM(std::vector<Triangle> &dtm_){dtm = dtm_;}
-    std::vector<Triangle> & getDTM(){return dtm;}
+    void setDMT(std::vector<Triangle> &dtm_){dtm = dtm_;}
+    std::vector<Triangle> & getDMT(){return dtm;}
+    void setSlope(bool slope_){slope = slope_;}
+    void setAspect(bool aspect_){aspect = aspect_;}
+
 signals:
 
 public slots:

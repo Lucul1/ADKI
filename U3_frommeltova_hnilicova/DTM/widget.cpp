@@ -1,7 +1,7 @@
 #include "widget.h"
 #include "ui_widget.h"
-#include "algorithms.h"
 #include <QFileDialog>
+#include "triangle.h"
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -75,8 +75,10 @@ void Widget::on_Delaunay_clicked()
 void Widget::on_Clear_DT_clicked()
 {
     std::vector<Edge> &dt = ui->Canvas->getDT();
+    std::vector<Triangle> &dtm = ui->Canvas->getDMT();
 
     dt.clear();
+    dtm.clear();
 
     repaint();
 }
@@ -132,5 +134,49 @@ void Widget::on_pushButton_2_clicked()
 {
     std::vector<Edge> &contours = ui->Canvas->getContours();
     contours.clear();
+    repaint();
+}
+
+void Widget::on_pushButton_clicked()
+{
+
+    std::vector<Edge> &dt = ui->Canvas->getDT();
+
+    Algorithms a;
+    bool slope = FALSE;
+    bool aspect = FALSE;
+
+    // DT needs to be created
+    if(dt.size()==0)
+    {
+        //Get points
+        std::vector<QPoint3D> &points = ui->Canvas->getPoints();
+
+        //Create DT
+        dt = a.DT(points);
+
+        //Set DT
+        ui->Canvas->setDT(dt);
+    }
+
+    // Analyze DTM
+    std::vector<Triangle> dtm = a.analyzeDTM(dt);
+    ui->Canvas->setDMT(dtm);
+
+    if (ui->comboBox->currentIndex()==0)
+    {
+        slope = TRUE;
+        aspect = FALSE;
+    }
+    else if (ui->comboBox->currentIndex()==1)
+    {
+        slope = FALSE;
+        aspect = TRUE;
+    }
+
+    ui->Canvas->setAspect(aspect);
+    ui->Canvas->setSlope(slope);
+
+    //Repaint
     repaint();
 }
