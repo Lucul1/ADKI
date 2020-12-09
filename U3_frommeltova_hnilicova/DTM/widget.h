@@ -19,6 +19,7 @@ private:
     double z_min;
     double z_max;
     double dz;
+    int number_p;
 
 private slots:
     void on_Import_clicked();
@@ -31,15 +32,17 @@ private slots:
 
     void on_Contours_clicked();
 
-    void on_lineEdit_editingFinished();
+    void on_lineEdit_zmin_editingFinished();
 
-    void on_lineEdit_2_editingFinished();
+    void on_lineEdit_zmax_editingFinished();
 
-    void on_lineEdit_3_editingFinished();
+    void on_lineEdit_interval_editingFinished();
 
-    void on_pushButton_2_clicked();
+    void on_Clear_Contours_clicked();
 
-    void on_pushButton_clicked();
+    void on_Analyze_DTM_clicked();
+
+    void on_lineEdit_numberPoints_editingFinished();
 
 private:
     Ui::Widget *ui;

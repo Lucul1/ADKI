@@ -11,6 +11,7 @@ Widget::Widget(QWidget *parent)
     z_max = 500;
     z_min = 0;
     dz = 10;
+    number_p = 300;
 }
 
 Widget::~Widget()
@@ -114,30 +115,30 @@ void Widget::on_Contours_clicked()
     repaint();
 }
 
-void Widget::on_lineEdit_editingFinished()
+void Widget::on_lineEdit_zmin_editingFinished()
 {
-    z_min = ui->lineEdit->text().toDouble();
+    z_min = ui->lineEdit_zmin->text().toDouble();
 }
 
-void Widget::on_lineEdit_2_editingFinished()
+void Widget::on_lineEdit_zmax_editingFinished()
 {
-    z_max = ui->lineEdit_2->text().toDouble();
+    z_max = ui->lineEdit_zmax->text().toDouble();
 }
 
 
-void Widget::on_lineEdit_3_editingFinished()
+void Widget::on_lineEdit_interval_editingFinished()
 {
-    dz = ui->lineEdit_3->text().toDouble();
+    dz = ui->lineEdit_interval->text().toDouble();
 }
 
-void Widget::on_pushButton_2_clicked()
+void Widget::on_Clear_Contours_clicked()
 {
     std::vector<Edge> &contours = ui->Canvas->getContours();
     contours.clear();
     repaint();
 }
 
-void Widget::on_pushButton_clicked()
+void Widget::on_Analyze_DTM_clicked()
 {
 
     std::vector<Edge> &dt = ui->Canvas->getDT();
@@ -179,4 +180,9 @@ void Widget::on_pushButton_clicked()
 
     //Repaint
     repaint();
+}
+
+void Widget::on_lineEdit_numberPoints_editingFinished()
+{
+    number_p = ui->lineEdit_interval->text().toDouble();
 }

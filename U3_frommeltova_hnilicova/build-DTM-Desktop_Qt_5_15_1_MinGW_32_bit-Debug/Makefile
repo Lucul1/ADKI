@@ -222,6 +222,7 @@ Makefile: ../DTM/DTM.pro D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/win32-g++/
 		D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/features/qt_config.prf \
 		D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/win32-g++/qmake.conf \
 		D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/features/exclusive_builds.prf \
 		D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/features/toolchain.prf \
 		D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/features/default_pre.prf \
@@ -250,7 +251,6 @@ Makefile: ../DTM/DTM.pro D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/win32-g++/
 		D:/Lucka/QTcreator/5.15.1/mingw81_32/lib/Qt5Gui.prl \
 		D:/Lucka/QTcreator/5.15.1/mingw81_32/lib/Qt5Core.prl \
 		D:/Lucka/QTcreator/5.15.1/mingw81_32/lib/qtmain.prl \
-		.qmake.stash \
 		D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/features/build_pass.prf
 	$(QMAKE) -o Makefile ..\DTM\DTM.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/features/spec_pre.prf:
@@ -405,6 +405,7 @@ D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/features/qt_functions.prf:
 D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/features/qt_config.prf:
 D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/win32-g++/qmake.conf:
 D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/features/exclusive_builds.prf:
 D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/features/toolchain.prf:
 D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/features/default_pre.prf:
@@ -433,7 +434,6 @@ D:/Lucka/QTcreator/5.15.1/mingw81_32/lib/Qt5Widgets.prl:
 D:/Lucka/QTcreator/5.15.1/mingw81_32/lib/Qt5Gui.prl:
 D:/Lucka/QTcreator/5.15.1/mingw81_32/lib/Qt5Core.prl:
 D:/Lucka/QTcreator/5.15.1/mingw81_32/lib/qtmain.prl:
-.qmake.stash:
 D:/Lucka/QTcreator/5.15.1/mingw81_32/mkspecs/features/build_pass.prf:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\DTM\DTM.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"

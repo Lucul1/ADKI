@@ -1,6 +1,7 @@
 release/algorithms.o
 release/draw.o
 release/edge.o
+release/genaratorterrain.o
 release/main.o
 release/qpoint3d.o
 release/sortbyx.o

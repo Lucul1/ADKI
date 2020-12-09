@@ -12,6 +12,7 @@ SOURCES += \
     algorithms.cpp \
     draw.cpp \
     edge.cpp \
+    genaratorterrain.cpp \
     main.cpp \
     qpoint3d.cpp \
     sortbyx.cpp \
@@ -22,6 +23,7 @@ HEADERS += \
     algorithms.h \
     draw.h \
     edge.h \
+    genaratorterrain.h \
     qpoint3d.h \
     sortbyx.h \
     triangle.h \
