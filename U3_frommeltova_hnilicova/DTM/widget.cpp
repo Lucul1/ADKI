@@ -1,7 +1,11 @@
 #include "widget.h"
 #include "ui_widget.h"
-#include <QFileDialog>
 #include "triangle.h"
+#include "draw.h"
+#include "algorithms.h"
+#include "genaratorterrain.h"
+
+#include <QFileDialog>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -107,8 +111,8 @@ void Widget::on_Contours_clicked()
     }
 
     // Create contour lines
+    std::vector<int> highcontours;
     std::vector<Edge> contours = a.contourLines(dt,z_min,z_max,dz);
-
     ui->Canvas->setContours(contours);
 
     //Repaint
@@ -185,4 +189,29 @@ void Widget::on_Analyze_DTM_clicked()
 void Widget::on_lineEdit_numberPoints_editingFinished()
 {
     number_p = ui->lineEdit_interval->text().toDouble();
+}
+
+void Widget::on_GeneratorPoints_clicked()
+{
+    //Get points
+        std::vector<QPoint3D> points;
+
+        //Set width and height as width and height canvas
+        int width = (ui->Canvas->width());
+        int height = (ui->Canvas->height());
+
+        //Number of points from editLine
+        int n = ui->lineEdit_numberPoints->text().toInt();
+
+        //Selection method for drawing points
+        if (ui->comboBox_GeneratorTerrain->currentIndex()== 0)
+           points = genaratorTerrain::generateRandom(n,width,height);
+        else if (ui->comboBox_GeneratorTerrain->currentIndex()== 1)
+           points = genaratorTerrain::generateKnoll(n,width,height);
+
+        //Add points to canvasu
+        ui->Canvas->setPoints(points);
+
+        //Repaint screen
+        repaint();
 }

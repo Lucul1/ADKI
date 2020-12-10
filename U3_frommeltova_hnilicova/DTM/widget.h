@@ -44,6 +44,8 @@ private slots:
 
     void on_lineEdit_numberPoints_editingFinished();
 
+    void on_GeneratorPoints_clicked();
+
 private:
     Ui::Widget *ui;
 };

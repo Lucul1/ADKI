@@ -89,7 +89,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="label_terain">
        <property name="font">
         <font>
          <weight>75</weight>
@@ -105,9 +105,21 @@
       <widget class="QComboBox" name="comboBox_GeneratorTerrain">
        <item>
         <property name="text">
-         <string>Mound</string>
+         <string>Random</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Knoll</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="GeneratorPoints">
+       <property name="text">
+        <string>Generate</string>
+       </property>
       </widget>
      </item>
      <item>
@@ -193,7 +205,14 @@
      <item>
       <widget class="QPushButton" name="Contours">
        <property name="text">
-        <string>Contours lines</string>
+        <string>Create Contours lines</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Contours_Label">
+       <property name="text">
+        <string>Create Contours line label</string>
        </property>
       </widget>
      </item>
@@ -201,6 +220,26 @@
       <widget class="QPushButton" name="Clear_Contours">
        <property name="text">
         <string>Clear Contours</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="line_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_analyze">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Analyze DTM:</string>
        </property>
       </widget>
      </item>

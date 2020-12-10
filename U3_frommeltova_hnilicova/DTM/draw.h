@@ -26,8 +26,10 @@ public:
     std::vector<QPoint3D> & getPoints(){return points;}
     void setDT(std::vector<Edge> &dt_){dt = dt_;}
     std::vector<Edge>  & getDT(){return dt;}
+
     void setContours(std::vector<Edge> &contours_){contours = contours_;}
     std::vector<Edge> & getContours(){return contours;}
+
     void setDMT(std::vector<Triangle> &dtm_){dtm = dtm_;}
     std::vector<Triangle> & getDMT(){return dtm;}
     void setSlope(bool slope_){slope = slope_;}

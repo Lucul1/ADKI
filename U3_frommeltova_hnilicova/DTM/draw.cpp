@@ -148,7 +148,9 @@ void Draw::paintEvent(QPaintEvent *e)
     {
         painter.drawLine(contours[i].getStart(), contours[i].getEnd());
     }
+
     painter.end();
+
 }
 
 void Draw::importPoints(std::string &path, std::vector<QPoint3D> &points,  QSizeF &canvas_size, double &min_z, double &max_z)
