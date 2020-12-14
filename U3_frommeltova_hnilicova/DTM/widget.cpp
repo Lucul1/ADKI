@@ -3,7 +3,7 @@
 #include "triangle.h"
 #include "draw.h"
 #include "algorithms.h"
-#include "genaratorterrain.h"
+#include "generatorterrain.h"
 
 #include <QFileDialog>
 
