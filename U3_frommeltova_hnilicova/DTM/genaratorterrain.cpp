@@ -1,5 +1,6 @@
 #include "genaratorterrain.h"
 #include "algorithms.h"
+#include "sortbyx.h"
 
 #include <cmath>
 
@@ -9,7 +10,7 @@
 }
 
  std::vector<QPoint3D> genaratorTerrain::generateRandom(int &n, int &w, int &h)
- {
+{
      //Empty set of points
      std::vector<QPoint3D> points_random;
 
@@ -25,8 +26,10 @@
 
         points_random.push_back(p);
       }
-        return points_random;
- }
+
+     return points_random;
+}
+
 std::vector<QPoint3D> genaratorTerrain::generateKnoll(int &n, int &w, int &h)
 {
     //Generator of Terrain - Knoll (cz = kupa)
@@ -52,20 +55,115 @@ std::vector<QPoint3D> genaratorTerrain::generateKnoll(int &n, int &w, int &h)
     QPoint3D p;
     p.setX(c.x()/points_random.size());
     p.setY(c.y()/points_random.size());
-    p.setZ(500);
+    p.setZ(1200);
     points_random.push_back(p);
 
-    //Count z-coordinates for other random points (longer the distance, the smaller z-coordinates)
+    //Count z-coordinates for other random points (the longer distance -> the smaller z-coordinates)
     for (int i = 0; i < (points_random.size()-1); i++)
     {
-        double d = Algorithms::dist(points_random[n], points_random[i]);
-        points_random[i].setZ(500 - d + (((double)rand() / RAND_MAX)*10));
+        Algorithms a;
+        double d = a.dist(points_random[n], points_random[i]);
+        points_random[i].setZ(1200 - d + ((((double)rand() / RAND_MAX)*5)));
     }
 
    return points_random;
 }
 
-std::vector<QPoint3D> genaratorTerrain::generateSaddle(int &n, int &w, int &h)
+std::vector<QPoint3D> genaratorTerrain::generateRidge(int &n, int &w, int &h)
 {
+    //Generator of Terrain - Ridge (cz = hřbet)
 
+    //Random set of points
+    std::vector<QPoint3D> points_random = generateRandom(n,w,h);
+
+    //Set z of Ridge
+    points_random[0].setZ(1400);
+    points_random.back().setZ(1300);
+
+    //Create center of the Ridge
+    QPoint3D c;
+    c.setX(0);
+    c.setY(0);
+
+    //Count sum x and y center of points
+    for (int i = 0; i < points_random.size(); i++)
+    {
+        double x = c.x()+points_random[i].x();
+        double y = c.y()+points_random[i].y();
+        c.setX(x);
+        c.setY(y);
+    }
+
+    //Center of gravity
+    QPoint3D p;
+    p.setX(c.x()/points_random.size());
+    p.setY(c.y()/points_random.size());
+    p.setZ(1200);
+    points_random.push_back(p);
+
+    //Count z-coordinates for other random points (the longer distance -> the smaller z-coordinates)
+    for (int i = 1; i < points_random.size() - 1; i++)
+    {
+        Algorithms a;
+
+        double d1 = a.dist(points_random[i], points_random[0]);
+        double d2 = a.dist(points_random[i], points_random[points_random.size()-2]);
+
+        if (d1 < d2)
+            points_random[i].setZ(1200 - a.getPointLineDistance(points_random[i], points_random[0], points_random.back()) + (((double)rand() / RAND_MAX)*5));
+        else
+            points_random[i].setZ(1200 - a.getPointLineDistance(points_random[i], points_random[points_random.size()-2], points_random.back()) + (((double)rand() / RAND_MAX)*5));
+
+    }
+
+    return points_random;
+}
+
+std::vector<QPoint3D> genaratorTerrain::generateValley(int &n, int &w, int &h)
+{
+    //Generator of Terrain - Valley (cz = udolí)
+
+    //Random set of points
+    std::vector<QPoint3D> points_random = generateRandom(n,w,h);
+
+    //Set z of Valley
+    points_random[0].setZ(50);
+    points_random.back().setZ(150);
+
+    //Create center of the Valley
+    QPoint3D c;
+    c.setX(0);
+    c.setY(0);
+
+    //Count sum x and y center of points
+    for (int i = 0; i < points_random.size(); i++)
+    {
+        double x = c.x()+points_random[i].x();
+        double y = c.y()+points_random[i].y();
+        c.setX(x);
+        c.setY(y);
+    }
+
+    //Center of gravity
+    QPoint3D p;
+    p.setX(c.x()/points_random.size());
+    p.setY(c.y()/points_random.size());
+    p.setZ(200);
+    points_random.push_back(p);
+
+    //Count z-coordinates for other random points (the longer distance -> the higher z-coordinates)
+    for (int i = 1; i < points_random.size() - 1; i++)
+    {
+        Algorithms a;
+        double d1 = a.dist(points_random[i], points_random[0]);
+        double d2 = a.dist(points_random[i], points_random[points_random.size()-2]);
+
+        if (d1 < d2)
+            points_random[i].setZ(200 + a.getPointLineDistance(points_random[i], points_random[0], points_random.back()) + (((double)rand() / RAND_MAX)*5));
+        else
+            points_random[i].setZ(200 + a.getPointLineDistance(points_random[i], points_random[points_random.size()-2], points_random.back()) + (((double)rand() / RAND_MAX)*5));
+
+    }
+
+    return points_random;
 }

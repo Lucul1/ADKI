@@ -11,8 +11,9 @@ Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
 {
+    //Set values for text line
     ui->setupUi(this);
-    z_max = 500;
+    z_max = 1500;
     z_min = 0;
     dz = 10;
     number_p = 300;
@@ -26,6 +27,7 @@ Widget::~Widget()
 
 void Widget::on_Import_clicked()
 {
+    //Import txt file from files
     std::vector<QPoint3D> points;
 
     QSizeF canvas_size = ui->Canvas->size();
@@ -38,15 +40,15 @@ void Widget::on_Import_clicked()
 
     std::string path_utf8 = path.toUtf8().constData();
 
-   Draw::importPoints(path_utf8, points,canvas_size, z_min, z_max);
+    Draw::importPoints(path_utf8, points,canvas_size, z_min, z_max);
 
-   ui->Canvas->setPoints(points);
+    ui->Canvas->setPoints(points);
 
-   repaint();
+    repaint();
 }
 
 
-void Widget::on_Clear_clicked()
+void Widget::on_Clear_Points_clicked()
 {
     //Get points
     std::vector<QPoint3D> &points = ui ->Canvas->getPoints();
@@ -79,12 +81,15 @@ void Widget::on_Delaunay_clicked()
 
 void Widget::on_Clear_DT_clicked()
 {
+    //Get DT & DMT
     std::vector<Edge> &dt = ui->Canvas->getDT();
     std::vector<Triangle> &dtm = ui->Canvas->getDMT();
 
+    //Clear DT & DMT
     dt.clear();
     dtm.clear();
 
+    //Repaint
     repaint();
 }
 
@@ -113,7 +118,9 @@ void Widget::on_Contours_clicked()
     // Create contour lines
     std::vector<int> highcontours;
     std::vector<Edge> contours = a.contourLines(dt,z_min,z_max,dz);
+    std::vector<Edge> main_c = a.contourLines(dt, z_min, z_max, dz * 5);
     ui->Canvas->setContours(contours);
+    ui->Canvas->setMainContours(main_c);
 
     //Repaint
     repaint();
@@ -129,7 +136,6 @@ void Widget::on_lineEdit_zmax_editingFinished()
     z_max = ui->lineEdit_zmax->text().toDouble();
 }
 
-
 void Widget::on_lineEdit_interval_editingFinished()
 {
     dz = ui->lineEdit_interval->text().toDouble();
@@ -137,21 +143,25 @@ void Widget::on_lineEdit_interval_editingFinished()
 
 void Widget::on_Clear_Contours_clicked()
 {
+    //Get contours
     std::vector<Edge> &contours = ui->Canvas->getContours();
+
+    //Clear contours and label
     contours.clear();
+    ui->Canvas->clearContours();
     repaint();
 }
 
 void Widget::on_Analyze_DTM_clicked()
 {
-
+    //Get DT
     std::vector<Edge> &dt = ui->Canvas->getDT();
 
     Algorithms a;
     bool slope = FALSE;
     bool aspect = FALSE;
 
-    // DT needs to be created
+    //DT needs to be created
     if(dt.size()==0)
     {
         //Get points
@@ -194,24 +204,65 @@ void Widget::on_lineEdit_numberPoints_editingFinished()
 void Widget::on_GeneratorPoints_clicked()
 {
     //Get points
-        std::vector<QPoint3D> points;
+    std::vector<QPoint3D> points;
 
-        //Set width and height as width and height canvas
-        int width = (ui->Canvas->width());
-        int height = (ui->Canvas->height());
+    //Set width and height as width and height canvas
+    int width = (ui->Canvas->width());
+    int height = (ui->Canvas->height());
 
-        //Number of points from editLine
-        int n = ui->lineEdit_numberPoints->text().toInt();
+    //Number of points from editLine
+    int n = ui->lineEdit_numberPoints->text().toInt();
 
-        //Selection method for drawing points
-        if (ui->comboBox_GeneratorTerrain->currentIndex()== 0)
-           points = genaratorTerrain::generateRandom(n,width,height);
-        else if (ui->comboBox_GeneratorTerrain->currentIndex()== 1)
-           points = genaratorTerrain::generateKnoll(n,width,height);
+    //Selection method for drawing points
+    if (ui->comboBox_GeneratorTerrain->currentIndex()== 0)
+        points = genaratorTerrain::generateRandom(n,width,height);
+    else if (ui->comboBox_GeneratorTerrain->currentIndex()== 1)
+        points = genaratorTerrain::generateKnoll(n,width,height);
+    else if (ui->comboBox_GeneratorTerrain->currentIndex()== 2)
+        points = genaratorTerrain::generateRidge(n,width,height);
+    else if (ui->comboBox_GeneratorTerrain->currentIndex()== 3)
+        points = genaratorTerrain::generateValley(n,width,height);
 
-        //Add points to canvasu
-        ui->Canvas->setPoints(points);
+    //Add points to canvasu
+    ui->Canvas->setPoints(points);
 
-        //Repaint screen
-        repaint();
+    //Repaint screen
+    repaint();
+}
+
+void Widget::on_Contours_Label_clicked()
+{
+    //Get contours
+    std::vector<Edge> label_c = ui->Canvas->getMainContours();
+
+    //Set label on contour
+    ui->Canvas->setLabelContours(label_c);
+    repaint();
+
+}
+
+void Widget::on_Clear_All_clicked()
+{
+    //Get points
+    std::vector<QPoint3D> &points = ui ->Canvas->getPoints();
+
+    //Clear points
+    points.clear();
+
+    //Get DT & DMT
+    std::vector<Edge> &dt = ui->Canvas->getDT();
+    std::vector<Triangle> &dtm = ui->Canvas->getDMT();
+
+    //Clear DT & DMT
+    dt.clear();
+    dtm.clear();
+
+    //Get contours
+    std::vector<Edge> &contours = ui->Canvas->getContours();
+
+    //Clear contours and label
+    contours.clear();
+    ui->Canvas->clearContours();
+
+    repaint();
 }

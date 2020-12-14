@@ -1,4 +1,5 @@
 #include "draw.h"
+
 #include <QtGui>
 #include <fstream>
 
@@ -141,7 +142,7 @@ void Draw::paintEvent(QPaintEvent *e)
     }
 
     //Draw contour lines
-    QPen q(QColor( 150, 75, 0 ));
+    QPen q(QColor( 150, 75, 0),1);
     painter.setPen(q);
 
     for (int i = 0; i < contours.size(); i++)
@@ -149,9 +150,36 @@ void Draw::paintEvent(QPaintEvent *e)
         painter.drawLine(contours[i].getStart(), contours[i].getEnd());
     }
 
-    painter.end();
+    //Draw main contour lines
+    QPen q2(QColor( 150, 75, 0), 2);
+    painter.setPen(q2);
 
+    for (int i = 0; i < main_c.size(); i++)
+    {
+        painter.drawLine(main_c[i].getStart(), main_c[i].getEnd());
+    }
+
+    //Draw contour labels
+    QPen colorLabel(QColor( 150, 75, 0), 1);
+    painter.setPen(colorLabel);
+
+    for (int i = 0; i < label_c.size(); i++)
+    {
+        Edge one_contour = label_c[i];
+        QPoint3D label_p1 = one_contour.getStart();
+        QPoint3D label_p2 = one_contour.getEnd();
+        QPointF label_point;
+        label_point.setX((label_p1.x() + label_p2.x()) / 2);
+        label_point.setY((label_p1.y() + label_p2.y()) / 2);
+        double z = label_p1.getZ();
+        QString z_string = QString::number(z);
+        painter.drawText(label_point, z_string);
+    }
+
+    painter.end();
 }
+
+
 
 void Draw::importPoints(std::string &path, std::vector<QPoint3D> &points,  QSizeF &canvas_size, double &min_z, double &max_z)
 {

@@ -40,7 +40,9 @@ public:
     QComboBox *comboBox_GeneratorTerrain;
     QPushButton *GeneratorPoints;
     QPushButton *Delaunay;
+    QPushButton *Clear_Points;
     QSpacerItem *verticalSpacer_2;
+    QLabel *label_set;
     QLabel *label_Z_min;
     QLineEdit *lineEdit_zmin;
     QLabel *label_Z_max;
@@ -50,19 +52,19 @@ public:
     QPushButton *Contours;
     QPushButton *Contours_Label;
     QPushButton *Clear_Contours;
-    QFrame *line_2;
+    QSpacerItem *verticalSpacer_3;
     QLabel *label_analyze;
     QComboBox *comboBox;
     QPushButton *Analyze_DTM;
-    QSpacerItem *verticalSpacer;
     QPushButton *Clear_DT;
-    QPushButton *Clear;
+    QSpacerItem *verticalSpacer;
+    QPushButton *Clear_All;
 
     void setupUi(QWidget *Widget)
     {
         if (Widget->objectName().isEmpty())
             Widget->setObjectName(QString::fromUtf8("Widget"));
-        Widget->resize(965, 668);
+        Widget->resize(965, 728);
         horizontalLayout = new QHBoxLayout(Widget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         Canvas = new Draw(Widget);
@@ -128,6 +130,8 @@ public:
         comboBox_GeneratorTerrain = new QComboBox(Widget);
         comboBox_GeneratorTerrain->addItem(QString());
         comboBox_GeneratorTerrain->addItem(QString());
+        comboBox_GeneratorTerrain->addItem(QString());
+        comboBox_GeneratorTerrain->addItem(QString());
         comboBox_GeneratorTerrain->setObjectName(QString::fromUtf8("comboBox_GeneratorTerrain"));
 
         verticalLayout->addWidget(comboBox_GeneratorTerrain);
@@ -142,9 +146,20 @@ public:
 
         verticalLayout->addWidget(Delaunay);
 
+        Clear_Points = new QPushButton(Widget);
+        Clear_Points->setObjectName(QString::fromUtf8("Clear_Points"));
+
+        verticalLayout->addWidget(Clear_Points);
+
         verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer_2);
+
+        label_set = new QLabel(Widget);
+        label_set->setObjectName(QString::fromUtf8("label_set"));
+        label_set->setFont(font);
+
+        verticalLayout->addWidget(label_set);
 
         label_Z_min = new QLabel(Widget);
         label_Z_min->setObjectName(QString::fromUtf8("label_Z_min"));
@@ -194,16 +209,13 @@ public:
 
         verticalLayout->addWidget(Clear_Contours);
 
-        line_2 = new QFrame(Widget);
-        line_2->setObjectName(QString::fromUtf8("line_2"));
-        line_2->setFrameShape(QFrame::HLine);
-        line_2->setFrameShadow(QFrame::Sunken);
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout->addWidget(line_2);
+        verticalLayout->addItem(verticalSpacer_3);
 
         label_analyze = new QLabel(Widget);
         label_analyze->setObjectName(QString::fromUtf8("label_analyze"));
-        label_analyze->setFont(font1);
+        label_analyze->setFont(font);
 
         verticalLayout->addWidget(label_analyze);
 
@@ -219,19 +231,19 @@ public:
 
         verticalLayout->addWidget(Analyze_DTM);
 
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout->addItem(verticalSpacer);
-
         Clear_DT = new QPushButton(Widget);
         Clear_DT->setObjectName(QString::fromUtf8("Clear_DT"));
 
         verticalLayout->addWidget(Clear_DT);
 
-        Clear = new QPushButton(Widget);
-        Clear->setObjectName(QString::fromUtf8("Clear"));
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout->addWidget(Clear);
+        verticalLayout->addItem(verticalSpacer);
+
+        Clear_All = new QPushButton(Widget);
+        Clear_All->setObjectName(QString::fromUtf8("Clear_All"));
+
+        verticalLayout->addWidget(Clear_All);
 
 
         horizontalLayout->addLayout(verticalLayout);
@@ -253,13 +265,17 @@ public:
         label_terain->setText(QCoreApplication::translate("Widget", "Terrain type:", nullptr));
         comboBox_GeneratorTerrain->setItemText(0, QCoreApplication::translate("Widget", "Random", nullptr));
         comboBox_GeneratorTerrain->setItemText(1, QCoreApplication::translate("Widget", "Knoll", nullptr));
+        comboBox_GeneratorTerrain->setItemText(2, QCoreApplication::translate("Widget", "Ridge", nullptr));
+        comboBox_GeneratorTerrain->setItemText(3, QCoreApplication::translate("Widget", "Valley", nullptr));
 
         GeneratorPoints->setText(QCoreApplication::translate("Widget", "Generate", nullptr));
         Delaunay->setText(QCoreApplication::translate("Widget", "Delaunay", nullptr));
+        Clear_Points->setText(QCoreApplication::translate("Widget", "Clear Points", nullptr));
+        label_set->setText(QCoreApplication::translate("Widget", "Set params. for drawing contours:", nullptr));
         label_Z_min->setText(QCoreApplication::translate("Widget", "Z_min (lowest):", nullptr));
         lineEdit_zmin->setText(QCoreApplication::translate("Widget", "0", nullptr));
         label_Z_max->setText(QCoreApplication::translate("Widget", "Z_max (highest):", nullptr));
-        lineEdit_zmax->setText(QCoreApplication::translate("Widget", "500", nullptr));
+        lineEdit_zmax->setText(QCoreApplication::translate("Widget", "1500", nullptr));
         label_interval->setText(QCoreApplication::translate("Widget", "Contour interval:", nullptr));
         lineEdit_interval->setText(QCoreApplication::translate("Widget", "10", nullptr));
         Contours->setText(QCoreApplication::translate("Widget", "Create Contours lines", nullptr));
@@ -271,7 +287,7 @@ public:
 
         Analyze_DTM->setText(QCoreApplication::translate("Widget", "Analyze DTM", nullptr));
         Clear_DT->setText(QCoreApplication::translate("Widget", "Clear DT", nullptr));
-        Clear->setText(QCoreApplication::translate("Widget", "Clear Points", nullptr));
+        Clear_All->setText(QCoreApplication::translate("Widget", "Clear all", nullptr));
     } // retranslateUi
 
 };

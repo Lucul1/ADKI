@@ -102,6 +102,17 @@ int Algorithms::findDelaunayPoint(QPoint3D &pi, QPoint3D &pj, std::vector<QPoint
     return i_min;
 }
 
+double Algorithms::getPointLineDistance(QPoint3D &q, QPoint3D &p1, QPoint3D &p2)
+{
+    //Calculate point and line distance
+    double numerator = q.x() * (p1.y() - p2.y()) + p1.x() * (p2.y() - q.y()) + p2.x() * (q.y() - p1.y());
+    double dx = p2.x() - p1.x();
+    double dy = p2.y() - p1.y();
+    double denumenator = sqrt(dx * dx + dy * dy);
+
+    double dist = fabs(numerator)/denumenator;
+    return dist;
+}
 
 double Algorithms::dist(QPoint3D &p1, QPoint3D &p2)
 {

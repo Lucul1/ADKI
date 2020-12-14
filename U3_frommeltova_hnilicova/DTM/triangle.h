@@ -1,5 +1,6 @@
 #ifndef TRIANGLE_H
 #define TRIANGLE_H
+
 #include "qpoint3d.h"
 
 class Triangle

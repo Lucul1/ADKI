@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>965</width>
-    <height>668</height>
+    <height>728</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -113,6 +113,16 @@
          <string>Knoll</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Ridge</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Valley</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>
@@ -130,6 +140,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="Clear_Points">
+       <property name="text">
+        <string>Clear Points</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="verticalSpacer_2">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -141,6 +158,20 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_set">
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Set params. for drawing contours:</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="label_Z_min">
@@ -178,7 +209,7 @@
      <item>
       <widget class="QLineEdit" name="lineEdit_zmax">
        <property name="text">
-        <string>500</string>
+        <string>1500</string>
        </property>
       </widget>
      </item>
@@ -224,16 +255,23 @@
       </widget>
      </item>
      <item>
-      <widget class="Line" name="line_2">
+      <spacer name="verticalSpacer_3">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Vertical</enum>
        </property>
-      </widget>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
      </item>
      <item>
       <widget class="QLabel" name="label_analyze">
        <property name="font">
         <font>
+         <pointsize>9</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -265,6 +303,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="Clear_DT">
+       <property name="text">
+        <string>Clear DT</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="verticalSpacer">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -278,16 +323,9 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="Clear_DT">
+      <widget class="QPushButton" name="Clear_All">
        <property name="text">
-        <string>Clear DT</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="Clear">
-       <property name="text">
-        <string>Clear Points</string>
+        <string>Clear all</string>
        </property>
       </widget>
      </item>

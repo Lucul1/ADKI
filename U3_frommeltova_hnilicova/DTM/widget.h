@@ -24,7 +24,7 @@ private:
 private slots:
     void on_Import_clicked();
 
-    void on_Clear_clicked();
+    void on_Clear_Points_clicked();
 
     void on_Delaunay_clicked();
 
@@ -45,6 +45,10 @@ private slots:
     void on_lineEdit_numberPoints_editingFinished();
 
     void on_GeneratorPoints_clicked();
+
+    void on_Contours_Label_clicked();
+
+    void on_Clear_All_clicked();
 
 private:
     Ui::Widget *ui;

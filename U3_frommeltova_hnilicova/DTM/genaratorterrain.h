@@ -7,9 +7,10 @@ class genaratorTerrain
 {
 public:
     genaratorTerrain();
-    static std::vector<QPoint3D>generateRandom(int &n, int &w, int &h);
+    static std::vector<QPoint3D> generateRandom(int &n, int &w, int &h);
     static std::vector<QPoint3D> generateKnoll(int &n, int &w, int &h);
-    static std::vector<QPoint3D> generateSaddle(int &n, int &w, int &h);
+    static std::vector<QPoint3D> generateRidge(int &n, int &w, int &h);
+    static std::vector<QPoint3D> generateValley(int &n, int &w, int &h);
 };
 
 #endif // GENARATORTERRAIN_H
