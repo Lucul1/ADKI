@@ -365,22 +365,22 @@ double Algorithms::calculateAspect(QPoint3D &p1, QPoint3D &p2, QPoint3D &p3)
 {
     //Compute aspect
     double ux = p2.x() - p1.x();
-        double uy = p2.y() - p1.y();
-        double uz = p2.getZ() - p1.getZ();
+    double uy = p2.y() - p1.y();
+    double uz = p2.getZ() - p1.getZ();
 
-        double vx = p3.x() - p1.x();
-        double vy = p3.y() - p1.y();
-        double vz = p3.getZ() - p1.getZ();
+    double vx = p3.x() - p1.x();
+    double vy = p3.y() - p1.y();
+    double vz = p3.getZ() - p1.getZ();
 
-        //Calculate normal vector and its norm
-        double nx = uy * vz - uz * vy;
-        double ny = -(ux * vz - vx * uz);
+    //Calculate normal vector and its norm
+    double nx = uy * vz - uz * vy;
+    double ny = -(ux * vz - vx * uz);
 
-        double aspect = atan2(nx, ny) / M_PI * 180;
-        if (aspect < 0)
-            aspect = aspect + 360;
+    double aspect = atan2(nx, ny) / M_PI * 180;
+    if (aspect < 0)
+    aspect = aspect + 360;
 
-        return aspect;
+    return aspect;
 }
 
 std::vector<Triangle> Algorithms:: analyzeDTM(std::vector<Edge> & dt)
