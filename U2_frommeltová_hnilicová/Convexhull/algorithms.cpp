@@ -7,6 +7,7 @@
 #include <cmath>
 #include <vector>
 #include <deque>
+#include <exception>
 #include <stack>
 
 Algorithms::Algorithms()
@@ -218,9 +219,10 @@ QPolygon Algorithms::sweepLine(std::vector<QPoint> &points)
 
     //Delete duplicate points
     std::vector<QPoint> pointsWithoutDuplicit;
-    for(unsigned int i =0; i<points.size() - 1; i++)
+    int n2 = points.size();
+    for(unsigned int i =0; i<n2; i++)
     {
-        if((points[i].x()!=points[i+1].x()) || (points[i].y()!=points[i+1].y())  )
+        if((points[i].x()!=points[(i+1)%n2].x()) || (points[i].y()!=points[(i+1)%n2].y())  )
         {
             pointsWithoutDuplicit.push_back(points[i]);
         }
