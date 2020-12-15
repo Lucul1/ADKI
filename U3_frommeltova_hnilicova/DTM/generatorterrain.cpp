@@ -76,9 +76,9 @@ std::vector<QPoint3D> genaratorTerrain::generateRidge(int &n, int &w, int &h)
     //Random set of points
     std::vector<QPoint3D> points_random = generateRandom(n,w,h);
 
-    //Set z of Ridge
-    points_random[0].setZ(1400);
-    points_random.back().setZ(1300);
+    //Set z first and last point of Ridge
+    points_random[0].setZ(1200);
+    points_random.back().setZ(1200);
 
     //Create center of the Ridge
     QPoint3D c;
@@ -126,8 +126,8 @@ std::vector<QPoint3D> genaratorTerrain::generateValley(int &n, int &w, int &h)
     //Random set of points
     std::vector<QPoint3D> points_random = generateRandom(n,w,h);
 
-    //Set z of Valley
-    points_random[0].setZ(50);
+    //Set z first and last point of Valley
+    points_random[0].setZ(150);
     points_random.back().setZ(150);
 
     //Create center of the Valley
@@ -148,7 +148,7 @@ std::vector<QPoint3D> genaratorTerrain::generateValley(int &n, int &w, int &h)
     QPoint3D p;
     p.setX(c.x()/points_random.size());
     p.setY(c.y()/points_random.size());
-    p.setZ(200);
+    p.setZ(150);
     points_random.push_back(p);
 
     //Count z-coordinates for other random points (the longer distance -> the higher z-coordinates)
