@@ -213,15 +213,17 @@ void Widget::on_GeneratorPoints_clicked()
     //Number of points from editLine
     int n = ui->lineEdit_numberPoints->text().toInt();
 
+    genaratorTerrain gen;
+
     //Selection method for drawing points
     if (ui->comboBox_GeneratorTerrain->currentIndex()== 0)
-        points = genaratorTerrain::generateRandom(n,width,height);
+        points = gen.generateRandom(n,width,height);
     else if (ui->comboBox_GeneratorTerrain->currentIndex()== 1)
-        points = genaratorTerrain::generateKnoll(n,width,height);
+        points = gen.generateKnoll(n,width,height);
     else if (ui->comboBox_GeneratorTerrain->currentIndex()== 2)
-        points = genaratorTerrain::generateRidge(n,width,height);
+        points = gen.generateRidge(n,width,height);
     else if (ui->comboBox_GeneratorTerrain->currentIndex()== 3)
-        points = genaratorTerrain::generateValley(n,width,height);
+        points = gen.generateValley(n,width,height);
 
     //Add points to canvasu
     ui->Canvas->setPoints(points);
