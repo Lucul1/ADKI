@@ -163,7 +163,7 @@ void Draw::paintEvent(QPaintEvent *e)
     QPen colorLabel(QColor( 150, 75, 0), 1);
     painter.setPen(colorLabel);
 
-    for (int i = 0; i < label_c.size(); i++)
+    for (int i = 0; i < label_c.size(); i+=3)
     {
         Edge one_contour = label_c[i];
         QPoint3D label_p1 = one_contour.getStart();
