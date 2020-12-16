@@ -98,7 +98,7 @@ void Widget::on_Clear_DT_clicked()
 void Widget::on_Contours_clicked()
 {
     //Create contour lines
-    std::vector<Edge> dt = ui->Canvas->getDT();
+    std::vector<Edge> &dt = ui->Canvas->getDT();
 
     Algorithms a;
 
@@ -235,7 +235,7 @@ void Widget::on_GeneratorPoints_clicked()
 void Widget::on_Contours_Label_clicked()
 {
     //Get contours
-    std::vector<Edge> label_c = ui->Canvas->getMainContours();
+    std::vector<Edge> &label_c = ui->Canvas->getMainContours();
 
     //Set label on contour
     ui->Canvas->setLabelContours(label_c);
