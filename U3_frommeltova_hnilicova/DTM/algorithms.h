@@ -9,7 +9,7 @@
 
 class Algorithms
 {
-public:
+
 public:
     Algorithms(){}
     int getPointLinePosition(QPoint3D &q, QPoint3D &p1, QPoint3D &p2);

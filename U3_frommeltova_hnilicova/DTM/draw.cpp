@@ -171,7 +171,7 @@ void Draw::paintEvent(QPaintEvent *e)
         QPointF label_point;
         label_point.setX((label_p1.x() + label_p2.x()) / 2);
         label_point.setY((label_p1.y() + label_p2.y()) / 2);
-        double z = label_p1.getZ();
+        double z = trunc(label_p1.getZ());
         QString z_string = QString::number(z);
         painter.drawText(label_point, z_string);
     }
